@@ -7,3 +7,16 @@ services:
 
 install: npm install
 script: npm test
+before_deploy:
+  - <STEP_MISTERIOSO>
+  - npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: '<API_KEY>'
+  app: <HEROKU_APP>
+  on:
+    branch: master
+  env:
+    - NODE_ENV=production
+  skip_cleanup: true  
