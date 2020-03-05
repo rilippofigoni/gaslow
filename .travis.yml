@@ -8,12 +8,12 @@ services:
 install: npm install
 script: npm test
 before_deploy:
-  - <STEP_MISTERIOSO>
+  - openssl aes-256-cbc -K $encrypted_0a6446eb3ae3_key -iv $encrypted_0a6446eb3ae3_iv -in .env.enc -out .env -d
   - npm run build
 deploy:
   provider: heroku
   api_key:
-    secure: '<API_KEY>'
+    secure: "VFpsSLXmR1hczl6W/p+bYJcykiZnM3o2r5cdPQ7DPxG6VhB8Q0bnrbT6IAgzhtBze5QaTGzpwc2rDGkcDjqrBv+SjfWne4Sg2pazpbFl8Ft4+L3F5lG98akQY++cwY29BuhQRiEHLduKawbdrwh9cY7GxLLosb3dQKxyIzP+MlC7T20u6QjcZTTjvEnH7RuklBqjvmkglAwEaY4NUlX2h9yUFe0nYf37IyVzS4rCCnEZd24yLSMKXSIkcaaf1X+2moVCDil1jCknEWPuaw5WjHPotbXlGK+mbtXsVLzBDzWRaYGYvMEWc1Kv1N+LHtqGFrvWtN1bKZYXATbeA+u0jSvQOa9OZz8REJkNui3hrqRwPmlxwoYIv3LplfNowtFKZmznLKhZIWPW4cXXGFlrBQFJDib5pXYpgdipgneucAO2xojmQM0VsnwISVXlOEUNuLxhdHH51kPEG1FJMxKVfnL4gxdn7A/Tc+571IsZ//UovXXoVZHUGtVVf1OGzVGr2SGtOGvPPkpMNJsV02DFtMLokhw6OfA2vbIA3rAtlnGDPu5/G3DTo3PaUknZGM/YFJ0hzW9rhKYsJua5Eq1XvQGAgatJl8TDBLTY/q2t2wFfQj5Fyu153pyHKcXhRS6HCAh9H7hOpi/AD81wjWmhIPIk+WciFdHSHiv5DjwNUZQ="
   app: <HEROKU_APP>
   on:
     branch: master
